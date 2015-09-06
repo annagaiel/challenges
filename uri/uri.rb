@@ -9,25 +9,34 @@ class Uri
   end
 
   def to_s
-    puts @uri
+    @uri
   end
 
-  # http://rubular.com/
-  # https?
-  # (?<=.com|.org|.edu)(.*)(?=\?)
-  # (?<=\/\/)([^\/]+)
-  # (?<=[?]).+(?=#)
-  # (?<=#).*
+  def scheme
+    @uri[0..@uri.index(":") - 1]
+  end
 
   def host
-   @uri[/https?/]
+    starting = @uri.index("://") + 3
+    ending   = @uri.index("/", starting)
+    @uri[starting..ending - 1]
+  end
+
+  def path
+    previous = @uri.index("://") + 3
+    starting = @uri.index("/", previous)
+    @uri[starting..@uri.index("?") - 1]
+  end
+
+  def query
+    @uri[@uri.index("?") + 1..@uri.index("#") - 1]
+  end
+
+  def fragment
+    @uri[@uri.index("#") + 1..@uri.size - 1]
   end
 
 end
-
-uri = Uri.new("http://foo.com/posts?id=30&limit=5#time=1305298413")
-uri.host()
-uri.to_s()
 
 =begin
 Write a class to parse a URL.  It should provide the same functionality as ruby's built in URI parser.  
