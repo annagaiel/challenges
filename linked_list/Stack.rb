@@ -6,14 +6,14 @@ class Stack
 	end
 
 	# current value of list node 
-	def value
-		@data.value
-	end
+	# def value
+	# 	@data.value
+	# end
 
-	# next node
-	def next_node
-		@data.next_node
-	end
+	# # next node
+	# def next_node
+	# 	@data.next_node
+	# end
 
 	# Push a value onto the stack
 	def push(newValue)
@@ -24,6 +24,9 @@ class Stack
 	# Remove the last item that was pushed onto the
 	# stack and return the value to the user
 	def pop
+		ret = @data
+		@data = @data.next_node
+		ret
 	end
 
 end

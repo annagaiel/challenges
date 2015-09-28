@@ -28,7 +28,8 @@ def reverse_list(list)
 		list = list.next_node
 	end
 
-	newlist
+	newlist.pop
+	
 end
 
 
